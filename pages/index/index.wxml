@@ -1,0 +1,65 @@
+<!--index.wxml-->
+<view class="container" style="padding-top: {{listPaddingTop}}px; ">
+  <!-- 背景图片 -->
+  <view class="container_img">
+    <image src="/images/bg.png" alt=""/>
+  </view>
+  
+  <!-- 自定义标题栏，使用动态样式适配不同机型 -->
+  <view class="custom-nav-bar" style="height:{{navBarHeight + statusBarHeight}}px; background-color:{{navBarBgColor}}; transition: background-color 0.3s ease;">
+    <!-- 状态栏占位 -->
+    <view class="status-bar" style="height:{{statusBarHeight}}px;"></view>
+    <!-- 标题区域 -->
+    <view class="title-container" style="height:{{navBarHeight}}px;">
+      <view class="title">首页</view>
+    </view>
+  </view>
+
+  <view class="container_placehold" style="height:{{navBarHeight + statusBarHeight}}px; background-color:{{navBarBgColor}}; transition: background-color 0.3s ease;"></view>
+  
+  <!-- 列表内容区域 -->
+  <scroll-view scroll-y="true" class="list-container" style="height: calc(100vh - {{listPaddingTop + 12 }}px);">
+    <view class="list" wx:if="'false'">
+      <block wx:for="{{list}}" wx:key="id">
+        <view class="list-item" bindtap="onItemTap" data-id="{{item.id}}">
+          <view class="list-item-header">
+            <view class="header-name">
+              <image src="/images/icon_date.png" mode=""/>
+              <view>2025/09/28 16:00-17:00</view>
+              <!-- <view>{{item.title}}</view> -->
+            </view>
+            <view class="header-status">已完成</view>
+          </view>
+          <view class="list-item-title">{{item.title}}</view>
+          <view class="list-item-desc">{{item.description}}</view>
+          <view class="list-item-footer">
+            <view class="footer-info">
+              <view class="footer-info-top">
+                <image src="/images/icon_time.png" mode=""/>
+                <text>训练时长</text>
+              </view>
+              <view class="footer-info-bottom">
+                <text class="value">45</text>
+                <text>分钟</text>
+              </view>
+            </view>
+            <view class="footer-info footer-info-right">
+              <view class="right-line" />
+              <view class="footer-info-top">
+                <image src="/images/icon_completion.png" mode=""/>
+                <text>完成度</text>
+              </view>
+              <view class="footer-info-bottom">
+                <text class="value">100</text>
+                <text>%</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view wx:if="{{list.length === 0}}" class="empty">
+        暂无数据
+      </view>
+    </view>
+  </scroll-view>
+</view>

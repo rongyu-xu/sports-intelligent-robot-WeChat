@@ -1,0 +1,72 @@
+<!--login.wxml-->
+<view class="login-container">
+  <!-- 登录标题 -->
+  <view class="login-header">
+    <text class="login-title">欢迎使用</text>
+    <text class="login-subtitle">体育智能机器人</text>
+  </view>
+  
+  <!-- 登录表单 -->
+  <view class="login-form">
+    <!-- 手机号输入 -->
+    <view class="input-group">
+      <text class="input-label">手机号码</text>
+      <input type="number" 
+             placeholder="请输入手机号码" 
+             value="{{phone}}" 
+             bindinput="onPhoneInput" 
+             maxlength="11" 
+             class="input-field"/>
+    </view>
+    
+    <!-- 验证码输入 -->
+    <view class="input-group">
+      <text class="input-label">验证码</text>
+      <view class="code-input-group">
+        <input type="number" 
+               placeholder="请输入验证码" 
+               value="{{code}}" 
+               bindinput="onCodeInput" 
+               maxlength="6" 
+               class="input-field code-input"/>
+        <button type="primary" 
+                bindtap="getVerificationCode" 
+                disabled="{{countdown > 0}}" 
+                class="code-btn">
+          {{countdown > 0 ? countdown + 's后重试' : '获取验证码'}}
+        </button>
+      </view>
+    </view>
+    
+    <!-- 手机号登录按钮 -->
+    <button type="primary" 
+            bindtap="phoneLogin" 
+            disabled="{{!phone || !code || isLoading}}" 
+            class="login-btn">
+      {{isLoading ? '登录中...' : '手机号登录'}}
+    </button>
+    
+    <!-- 分隔线 -->
+    <view class="divider">
+      <view class="divider-line"></view>
+      <text class="divider-text">其他登录方式</text>
+      <view class="divider-line"></view>
+    </view>
+    
+    <!-- 微信一键登录 -->
+    <button open-type="getPhoneNumber" 
+            bindgetphonenumber="getPhoneNumber" 
+            disabled="{{isLoading || !canIUseGetPhoneNumber}}" 
+            class="wechat-login-btn">
+      {{isLoading ? '登录中...' : '微信一键登录'}}
+    </button>
+  </view>
+  
+  <!-- 底部说明 -->
+  <view class="login-footer">
+    <text class="footer-text">登录即表示您同意</text>
+    <text class="footer-link">《用户协议》</text>
+    <text class="footer-text">和</text>
+    <text class="footer-link">《隐私政策》</text>
+  </view>
+</view>

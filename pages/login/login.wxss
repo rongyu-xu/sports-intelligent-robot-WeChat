@@ -1,0 +1,149 @@
+/* login.wxss */
+.login-container {
+  padding: 60rpx 40rpx;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: #f7f7f7;
+}
+
+/* 登录标题 */
+.login-header {
+  margin-bottom: 80rpx;
+  text-align: center;
+}
+
+.login-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333333;
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+.login-subtitle {
+  font-size: 32rpx;
+  color: #666666;
+}
+
+/* 登录表单 */
+.login-form {
+  flex: 1;
+}
+
+.input-group {
+  margin-bottom: 40rpx;
+}
+
+.input-label {
+  font-size: 28rpx;
+  color: #333333;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.input-field {
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  padding: 30rpx;
+  font-size: 32rpx;
+  border: 1rpx solid #eeeeee;
+}
+
+.code-input-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.code-input {
+  flex: 1;
+  margin-right: 20rpx;
+}
+
+.code-btn {
+  width: 200rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 28rpx;
+  background-color: #1AAD19;
+  color: #ffffff;
+}
+
+.code-btn[disabled] {
+  background-color: #cccccc;
+  color: #ffffff;
+}
+
+.login-btn {
+  width: 100%;
+  margin-top: 60rpx;
+  padding: 0;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  background-color: #1AAD19;
+  color: #ffffff;
+  border-radius: 50rpx;
+}
+
+.login-btn[disabled] {
+  background-color: #cccccc;
+  color: #ffffff;
+}
+
+/* 分隔线 */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 60rpx 0;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1rpx;
+  background-color: #dddddd;
+}
+
+.divider-text {
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+/* 微信登录按钮 */
+.wechat-login-btn {
+  width: 100%;
+  padding: 0;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  background-color: #07C160;
+  color: #ffffff;
+  border-radius: 50rpx;
+}
+
+.wechat-login-btn[disabled] {
+  background-color: #cccccc;
+  color: #ffffff;
+}
+
+/* 底部说明 */
+.login-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 40rpx 0;
+}
+
+.footer-text {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.footer-link {
+  font-size: 24rpx;
+  color: #1AAD19;
+}

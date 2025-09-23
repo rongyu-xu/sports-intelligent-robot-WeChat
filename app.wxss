@@ -1,0 +1,53 @@
+/**app.wxss**/
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  background-color: #f6f6f6;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333333;
+}
+
+.container {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.list-item {
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.list-item-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.list-item-desc {
+  font-size: 28rpx;
+  color: #666666;
+  margin-bottom: 15rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.list-item-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-item-time {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.list-item-more {
+  color: #1AAD19;
+  font-size: 28rpx;
+}

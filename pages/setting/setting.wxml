@@ -1,0 +1,33 @@
+<!--setting.wxml-->
+<view class="setting-container">
+  <!-- 设置列表 -->
+  <view class="setting-list">
+    <block wx:for="{{settings}}" wx:key="id">
+      <view class="setting-item" bindtap="onSettingItemTap" data-id="{{item.id}}">
+        <view class="setting-info">
+          <text class="setting-title">{{item.title}}</text>
+          <text class="setting-desc">{{item.desc}}</text>
+        </view>
+        <view class="setting-action">
+          <switch wx:if="{{item.switch !== undefined}}" 
+                  checked="{{item.switch}}" 
+                  bindchange="onSwitchChange" 
+                  data-id="{{item.id}}" />
+          <text wx:if="{{item.arrow}}" class="setting-arrow">→</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 退出登录按钮 -->
+  <view class="logout-container">
+    <button type="warn" bindtap="onLogoutTap" class="logout-btn">
+      退出登录
+    </button>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="version-info">
+    <text>版本 1.0.0</text>
+  </view>
+</view>

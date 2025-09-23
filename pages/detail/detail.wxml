@@ -1,0 +1,67 @@
+<!--detail.wxml-->
+<view class="detail-container">
+  <!-- 标题区域 -->
+  <view class="list-item">
+    <view class="list-item-header">
+      <view class="header-name">
+        <image src="/images/icon_date.png" mode=""/>
+        <view>课程时间：2025/09/28 16:00-17:00</view>
+      </view>
+    </view>
+    <view class="list-item-title">篮球基础训练课</view>
+    <view class="list-item-desc">完成热身、运球、传球训练，表现优秀!</view>
+    <view class="list-item-footer">
+      <view class="footer-info">
+        <view class="footer-info-top">
+          <text>训练时长</text>
+        </view>
+        <view class="footer-info-bottom">
+          <text class="value">45</text>
+          <text>分钟</text>
+        </view>
+      </view>
+      <view class="footer-info footer-info-right">
+        <view class="right-line" />
+        <view class="footer-info-top">
+          <text>完成度</text>
+        </view>
+        <view class="footer-info-bottom">
+          <text class="value">100</text>
+          <text>%</text>
+        </view>
+      </view>
+      <view class="footer-info footer-info-right">
+        <view class="right-line" />
+        <view class="footer-info-top">
+          <text>评分</text>
+        </view>
+        <view class="footer-info-bottom">
+          <text class="value">5.0</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 分享 -->
+  <view class="detail-share">
+    <text>精彩瞬间</text>
+    <view open-type="share" class="share-btn">
+      一键分享
+    </view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="detail-content">
+    <!-- 图片列表 -->
+    <view class="image-grid">
+      <view class="image-row" wx:for="{{imageList}}" wx:for-item="item" wx:for-index="index" wx:key="index" wx:if="{{index % 2 === 0}}">
+        <view class="image-item">
+          <image src="{{item}}" mode="aspectFill" bindtap="previewImage" data-index="{{index}}"/>
+        </view>
+        <view class="image-item" wx:if="{{index + 1 < imageList.length}}">
+          <image src="{{imageList[index + 1]}}" mode="aspectFill" bindtap="previewImage" data-index="{{index + 1}}"/>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

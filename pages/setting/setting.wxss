@@ -1,0 +1,72 @@
+/* setting.wxss */
+.setting-container {
+  padding-bottom: 100rpx;
+}
+
+/* 设置列表 */
+.setting-list {
+  margin-top: 20rpx;
+  background-color: #ffffff;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+
+.setting-item:active {
+  background-color: #f7f7f7;
+}
+
+.setting-info {
+  flex: 1;
+}
+
+.setting-title {
+  font-size: 32rpx;
+  color: #333333;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.setting-desc {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.setting-action {
+  display: flex;
+  align-items: center;
+}
+
+.setting-arrow {
+  color: #cccccc;
+  font-size: 24rpx;
+}
+
+/* 退出登录按钮 */
+.logout-container {
+  margin-top: 40rpx;
+  padding: 0 30rpx;
+}
+
+.logout-btn {
+  font-size: 32rpx;
+  line-height: 1.8;
+}
+
+/* 版本信息 */
+.version-info {
+  text-align: center;
+  margin-top: 60rpx;
+  padding: 20rpx;
+}
+
+.version-info text {
+  color: #999999;
+  font-size: 24rpx;
+}
