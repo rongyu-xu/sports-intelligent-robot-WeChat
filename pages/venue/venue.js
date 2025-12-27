@@ -10,7 +10,77 @@ Page({
       'padding-top': '168rpx'
     },
     isScrolled: false,   // 控制标题栏背景色的滚动状态
-    navBarBgColor: 'transparent' // 默认标题栏背景色为透明
+    navBarBgColor: 'transparent', // 默认标题栏背景色为透明
+    // 教练力量数据
+    coaches: [
+      {
+        id: 1,
+        name: '张教练',
+        title: '篮球高级教练',
+        avatar: '/images/test1.png'
+      },
+      {
+        id: 2,
+        name: '李教练',
+        title: '足球专业教练',
+        avatar: '/images/test2.png'
+      },
+      {
+        id: 3,
+        name: '王教练',
+        title: '羽毛球特级教练',
+        avatar: '/images/test3.png'
+      },
+      {
+        id: 4,
+        name: '赵教练',
+        title: '乒乓球金牌教练',
+        avatar: '/images/test4.png'
+      },
+      {
+        id: 5,
+        name: '陈教练',
+        title: '游泳中级教练',
+        avatar: '/images/test5.png'
+      }
+    ],
+    // 智能设备数据
+    equipment: [
+      {
+        id: 1,
+        name: '篮球教培机器人',
+        count: 10
+      },
+      {
+        id: 2,
+        name: '智能篮板',
+        count: 15
+      }
+    ],
+    // 学员评价数据
+    reviews: [
+      {
+        id: 1,
+        name: '小明',
+        avatar: '/images/icon_commonUser.png',
+        rating: 4,
+        content: '场馆设施非常齐全，教练专业耐心，每次来都能得到很好的训练效果。'
+      },
+      {
+        id: 2,
+        name: '小红',
+        avatar: '/images/icon_family.png',
+        rating: 4,
+        content: '环境干净整洁，器材维护得很好，就是周末人有点多。'
+      },
+      {
+        id: 3,
+        name: '小刚',
+        avatar: '/images/icon_commonUser.png',
+        rating: 5,
+        content: '教练非常专业，制定的训练计划很有针对性，坚持了三个月，身体素质明显提高。'
+      }
+    ]
   },
   onLoad: function() {
     // 获取系统信息，包括状态栏高度等，用于适配不同机型
@@ -149,5 +219,12 @@ Page({
     // 下拉刷新
     this.getListData();
     wx.stopPullDownRefresh();
+  },
+  
+  // 返回上一页
+  onBackTap: function() {
+    wx.navigateBack({
+      delta: 1
+    });
   }
 })

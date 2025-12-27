@@ -1,0 +1,57 @@
+<!--map.wxml-->
+<view class="homepage">
+  <!-- 地图区域 -->
+  <map 
+    class="map" 
+    id="map" 
+    longitude="113.324520" 
+    latitude="23.099994" 
+    scale="14" 
+    markers="{{markers}}" 
+    covers="{{covers}}" 
+    show-location="{{true}}"
+    enable-compass="{{true}}"
+    enable-zoom="{{true}}"
+    enable-scroll="{{true}}"
+    enable-rotate="{{true}}"
+    bindtap="onMapTap"
+  ></map>
+  
+  <!-- 下方数据展示区域 -->
+  <view class="data-container">
+    <!-- 搜索框 -->
+    <view class="search-box">
+      <image src="/images/icon_search.png" class="search-icon" />
+      <input type="text" placeholder="搜索地点或场馆" class="search-input" />
+    </view>
+    
+    <!-- 推荐内容 -->
+    <view class="recommend-section">
+      <view class="recommend-list">
+        <view wx:for="{{courses}}" wx:key="id" class="recommend-item">
+          <view class="item-info">
+            <view class="item-name">
+              <text>李宁体育馆</text>
+              <view class="navigation">
+                <image src="/images/icon_navigation.png" class="navigation-img" />
+                <text>0.5km</text>
+              </view>
+            </view>
+            <view class="item-desc">凤起路12号2号楼</view>
+            <view class="item-meta">
+              <view class="distance">
+                <view class="ball ball-blue">篮球</view>
+                <view class="ball ball-green">足球</view>
+                <view class="ball ball-origin">羽毛球</view>
+              </view>
+              <view class="rating" bindtap="onTapDetail" data-id="{{item.id}}">
+                <text>详情</text>
+                <image src="/images/icon_arrow.png" class="arrow-img" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

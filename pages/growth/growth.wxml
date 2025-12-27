@@ -1,0 +1,66 @@
+<!--pages/growth/growth.wxml-->
+<view class="container">
+  <!-- 背景图片 -->
+  <image class="background-img" src="/images/bg.png"></image>
+
+  <!-- 自定义标题栏 -->
+  <view class="custom-navbar" style="height: {{statusBarHeight + navBarHeight}}px; background-color: {{navBarBgColor}};">
+    <view class="status-bar" style="height: {{statusBarHeight}}px;"></view>
+    <view class="nav-bar-content" style="height: {{navBarHeight}}px;">
+      <text class="nav-title">成长</text>
+    </view>
+  </view>
+
+  <!-- 成长数据概览 -->
+  <view class="stats-overview">
+    <view class="stat-item">
+      <text class="stat-number">{{totalDistance}}km</text>
+      <text class="stat-label">总里程</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-number">{{totalTime}}h</text>
+      <text class="stat-label">总时长</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-number">{{totalCalories}}kcal</text>
+      <text class="stat-label">消耗卡路里</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-number">{{totalWorkouts}}</text>
+      <text class="stat-label">运动次数</text>
+    </view>
+  </view>
+
+  <!-- 成就卡片 -->
+  <view class="section">
+    <text class="section-title">我的成就</text>
+    <view class="achievements">
+      <view class="achievement-card" wx:for="{{achievements}}" wx:key="id">
+        <image class="achievement-icon" src="{{item.icon}}"></image>
+        <text class="achievement-title">{{item.title}}</text>
+        <text class="achievement-desc">{{item.description}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 运动历程 -->
+  <view class="section">
+    <text class="section-title">运动历程</text>
+    <view class="progress-chart">
+      <!-- 这里可以是一个简单的进度图表或时间线 -->
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{progress}}%;"></view>
+      </view>
+      <text class="progress-text">{{currentLevel}}级 / {{totalLevels}}级</text>
+    </view>
+    <view class="milestones">
+      <view class="milestone-item" wx:for="{{milestones}}" wx:key="id">
+        <view class="milestone-time">{{item.time}}</view>
+        <view class="milestone-content">
+          <text class="milestone-title">{{item.title}}</text>
+          <text class="milestone-desc">{{item.description}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

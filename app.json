@@ -1,9 +1,12 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/map/map",
+    "pages/course/course",
+    "pages/growth/growth",
     "pages/login/login",
     "pages/user/user",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/venue/venue"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -16,10 +19,22 @@
     "selectedColor": "#019EFF",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/map/map",
         "text": "首页",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/home_active.png"
+      },
+      {
+        "pagePath": "pages/course/course",
+        "text": "课程",
+        "iconPath": "images/course.png",
+        "selectedIconPath": "images/course_active.png"
+      },
+      {
+        "pagePath": "pages/growth/growth",
+        "text": "成长",
+        "iconPath": "images/growth.png",
+        "selectedIconPath": "images/growth_active.png"
       },
       {
         "pagePath": "pages/user/user",

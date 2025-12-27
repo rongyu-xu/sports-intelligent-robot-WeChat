@@ -1,0 +1,113 @@
+<!--index.wxml-->
+<view class="container" style="padding-top: {{listPaddingTop}}px; ">
+  <!-- 背景图片 -->
+  <view class="container_img">
+    <image src="/images/bg1.png" alt=""/>
+  </view>
+  
+  <!-- 自定义标题栏，使用动态样式适配不同机型 -->
+  <view class="custom-nav-bar" style="height:{{navBarHeight + statusBarHeight}}px; background-color:{{navBarBgColor}}; transition: background-color 0.3s ease;">
+    <!-- 状态栏占位 -->
+    <view class="status-bar" style="height:{{statusBarHeight}}px;"></view>
+    <!-- 标题区域 -->
+    <view class="title-container" style="height:{{navBarHeight}}px;">
+      <view class="back-button" bindtap="onBackTap">
+        <image class="back-icon" src="/images/icon_arrow.png" mode="aspectFit"/>
+      </view>
+      <view class="title">场馆详情</view>
+    </view>
+  </view>
+
+  <view class="container_placehold" style="height:{{navBarHeight + statusBarHeight}}px; background-color:{{navBarBgColor}}; transition: background-color 0.3s ease;"></view>
+  
+  <!-- 列表内容区域 -->
+  <scroll-view scroll-y="true" class="list-container" style="height: calc(100vh - {{listPaddingTop + 12 }}px);">
+    <view class="list">
+      <view class="introduction">
+        <view class="venue-info">
+          <view class="item-name">
+            <text>李宁体育馆</text>
+            <view class="navigation">
+              <image src="/images/icon_navigation.png" class="navigation-img" />
+              <text>导航</text>
+            </view>
+          </view>
+          <view class="item-desc">凤起路12号2号楼</view>
+          <view class="item-meta">
+            <view class="distance">
+              <view class="ball-text">训练类型：</view>
+              <view class="ball ball-blue">篮球</view>
+              <view class="ball ball-green">足球</view>
+              <view class="ball ball-origin">羽毛球</view>
+            </view>
+          </view>
+        </view>
+        <view class="venue-brief">
+          <view>
+            <text class="brief-text">培训机构：</text>
+            <text class="brief-title">互动体育</text>
+          </view>
+          <view class="brief-logo">
+            <image src="/images/icon_date.png" class="logo" />
+            <view>
+              乐活体育篮球训练营成立于2009年，是中国成长最快、规模最大、最专业的青少年篮球培训和教育机构。致力于青少年篮球教育、篮球赛事、青少年篮球人才...
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="introduction">
+        <!-- 教练力量 -->
+        <view class="coaches-section">
+          <text class="section-title">教练力量</text>
+          <scroll-view scroll-x="true" class="coaches-scroll" enable-flex="true">
+            <view class="coaches-container">
+              <view class="coach-item" wx:for="{{coaches}}" wx:key="id">
+                <image class="coach-avatar" src="{{item.avatar}}"></image>
+                <text class="coach-name">{{item.name}}</text>
+                <text class="coach-title">{{item.title}}</text>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+
+      <view class="introduction">
+        <!-- 智能设备 -->
+        <view class="equipment-section">
+          <text class="section-title">智能教培</text>
+          <view class="equipment-list">
+            <view class="equipment-item" wx:for="{{equipment}}" wx:key="id">
+              <image src="/images/icon_date.png" class="logo" />
+              <view>
+                <text class="equipment-name">{{item.name}}</text>
+                <text class="equipment-count">{{item.count}}套</text>
+                <text class="equipment-text">可进行系统化的投篮训练</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="introduction">
+        <!-- 学员评价 -->
+        <view class="reviews-section">
+          <text class="section-title">学员评价</text>
+          <view class="reviews-list">
+            <view class="review-item" wx:for="{{reviews}}" wx:key="id">
+              <view class="review-header">
+                <image class="review-avatar" src="{{item.avatar}}"></image>
+                <text class="review-name">{{item.name}}</text>
+                <view class="star-rating">
+                  <view class="star" wx:for="{{[1,2,3,4,5]}}" wx:key="*this" wx:for-item="starIndex">
+                    <text class="star-icon">{{starIndex <= item.rating ? '★' : '☆'}}</text>
+                  </view>
+                </view>
+              </view>
+              <text class="review-content">{{item.content}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

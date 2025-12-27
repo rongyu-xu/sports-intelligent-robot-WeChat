@@ -1,4 +1,4 @@
-<!--index.wxml-->
+<!--course.wxml-->
 <view class="container" style="padding-top: {{listPaddingTop}}px; ">
   <!-- 背景图片 -->
   <view class="container_img">
@@ -11,7 +11,7 @@
     <view class="status-bar" style="height:{{statusBarHeight}}px;"></view>
     <!-- 标题区域 -->
     <view class="title-container" style="height:{{navBarHeight}}px;">
-      <view class="title">首页</view>
+      <view class="title">课程</view>
     </view>
   </view>
 
@@ -19,16 +19,15 @@
   
   <!-- 列表内容区域 -->
   <scroll-view scroll-y="true" class="list-container" style="height: calc(100vh - {{listPaddingTop + 12 }}px);">
-    <view class="list" wx:if="'false'">
-      <block wx:for="{{list}}" wx:key="id">
-        <view class="list-item" bindtap="onItemTap" data-id="{{item.id}}">
+    <view class="list">
+      <block wx:for="{{courses}}" wx:key="id">
+        <view class="list-item" bindtap="onCourseTap" data-id="{{item.id}}">
           <view class="list-item-header">
             <view class="header-name">
               <image src="/images/icon_date.png" mode=""/>
-              <view>2025/09/28 16:00-17:00</view>
-              <!-- <view>{{item.title}}</view> -->
+              <view>{{item.time}}</view>
             </view>
-            <view class="header-status">已完成</view>
+            <view class="header-status">{{item.status}}</view>
           </view>
           <view class="list-item-title">{{item.title}}</view>
           <view class="list-item-desc">{{item.description}}</view>
@@ -36,10 +35,10 @@
             <view class="footer-info">
               <view class="footer-info-top">
                 <image src="/images/icon_time.png" mode=""/>
-                <text>训练时长</text>
+                <text>课程时长</text>
               </view>
               <view class="footer-info-bottom">
-                <text class="value">45</text>
+                <text class="value">{{item.duration}}</text>
                 <text>分钟</text>
               </view>
             </view>
@@ -50,15 +49,15 @@
                 <text>完成度</text>
               </view>
               <view class="footer-info-bottom">
-                <text class="value">100</text>
+                <text class="value">{{item.difficulty}}</text>
                 <text>%</text>
               </view>
             </view>
           </view>
         </view>
       </block>
-      <view wx:if="{{list.length === 0}}" class="empty">
-        暂无数据
+      <view wx:if="{{courses.length === 0}}" class="empty">
+        暂无课程数据
       </view>
     </view>
   </scroll-view>
