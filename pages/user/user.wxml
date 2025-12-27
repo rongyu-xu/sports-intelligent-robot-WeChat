@@ -1,7 +1,7 @@
 <!--user.wxml-->
 <view class="user-container">
   <view class="container-img">
-    <image src="/images/bg.png" mode=""/>
+    <image src="/images/bg1.png" mode=""/>
   </view>
   <!-- 用户信息区域 -->
   <view class="user-info"  style="padding-top: {{listPaddingTop}}px;">
@@ -34,21 +34,27 @@
         <image src="/images/icon_info.png" mode=""/>
         <text class="menu-text">信息设置</text>
       </view>
-      <text class="menu-arrow">></text>
+      <view class="menu-arrow">
+        <image src="/images/icon_arrow.png" mode=""/>
+      </view>
     </view>
     <view class="menu-item" bindtap="onOrderTap">
       <view class="menu-title">
         <image src="/images/icon_picture.png" mode=""/>
         <text class="menu-text">识别图管理</text>
       </view>
-      <text class="menu-arrow">></text>
+      <view class="menu-arrow">
+        <image src="/images/icon_arrow.png" mode=""/>
+      </view>
     </view>
     <view class="menu-item" bindtap="onOrderTap">
       <view class="menu-title">
         <image src="/images/icon_family.png" mode=""/>
         <text class="menu-text">家庭账号管理</text>
       </view>
-      <text class="menu-arrow">></text>
+      <view class="menu-arrow">
+        <image src="/images/icon_arrow.png" mode=""/>
+      </view>
     </view>
   </view>
 

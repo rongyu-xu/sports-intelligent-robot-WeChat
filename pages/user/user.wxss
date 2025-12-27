@@ -39,15 +39,15 @@
 }
 
 .avatar {
-  width: 160rpx;
-  height: 160rpx;
+  width: 164rpx;
+  height: 164rpx;
   border-radius: 80rpx;
-  border: 4rpx solid rgba(255, 255, 255, 0.8);
+  /* border: 4rpx solid rgba(255, 255, 255, 1); */
 }
 
 .avatar-placeholder {
-  width: 160rpx;
-  height: 160rpx;
+  width: 164rpx;
+  height: 164rpx;
   border-radius: 80rpx;
   background-color: rgba(255, 255, 255, 0.3);
   display: flex;
@@ -91,15 +91,20 @@
   margin-top: 20rpx;
   background-color: #ffffff;
   border-radius: 32rpx;
+  padding: 0 36rpx;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 30rpx;
   border-bottom: 1rpx solid #f0f0f0;
+  padding: 36rpx 0;
   transition: background-color 0.2s;
+}
+
+.menu-item:nth-last-child(1) {
+  border: none;
 }
 
 .menu-item:active {
@@ -124,8 +129,13 @@
 }
 
 .menu-arrow {
-  color: #cccccc;
-  font-size: 36rpx;
+  /* color: #cccccc;
+  font-size: 36rpx; */
+}
+
+.menu-arrow image {
+  width: 36rpx;
+  height: 36rpx;
 }
 
 /* 关于我们 */

@@ -82,12 +82,12 @@ Page({
       detail: detailData,
       contentLines: contentLines,
       imageList: [
-        '/images/sport1.png',
-        '/images/sport2.png',
-        '/images/sport3.png',
-        '/images/sport4.png',
-        '/images/sport5.png',
-        '/images/sport1.png'
+        '/images/test0.png',
+        '/images/test1.png',
+        '/images/test2.png',
+        '/images/test3.png',
+        '/images/test4.png',
+        '/images/test5.png'
       ]
     });
   },

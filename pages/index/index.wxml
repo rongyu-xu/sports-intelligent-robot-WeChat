@@ -2,7 +2,7 @@
 <view class="container" style="padding-top: {{listPaddingTop}}px; ">
   <!-- 背景图片 -->
   <view class="container_img">
-    <image src="/images/bg.png" alt=""/>
+    <image src="/images/bg1.png" alt=""/>
   </view>
   
   <!-- 自定义标题栏，使用动态样式适配不同机型 -->
