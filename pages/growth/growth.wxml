@@ -1,66 +1,84 @@
 <!--pages/growth/growth.wxml-->
-<view class="container">
+<view class="container" style="padding-top: {{listPaddingTop}}px; ">
   <!-- 背景图片 -->
-  <image class="background-img" src="/images/bg.png"></image>
-
-  <!-- 自定义标题栏 -->
-  <view class="custom-navbar" style="height: {{statusBarHeight + navBarHeight}}px; background-color: {{navBarBgColor}};">
-    <view class="status-bar" style="height: {{statusBarHeight}}px;"></view>
-    <view class="nav-bar-content" style="height: {{navBarHeight}}px;">
-      <text class="nav-title">成长</text>
+  <view class="container_img">
+    <image src="/images/bg_growth.png" alt=""/>
+  </view>
+  
+  <!-- 自定义标题栏，使用动态样式适配不同机型 -->
+  <view class="custom-nav-bar" style="height:{{navBarHeight + statusBarHeight}}px; background-color:{{navBarBgColor}}; transition: background-color 0.3s ease;">
+    <!-- 状态栏占位 -->
+    <view class="status-bar" style="height:{{statusBarHeight}}px;"></view>
+    <!-- 标题区域 -->
+    <view class="title-container" style="height:{{navBarHeight}}px;">
+      <view class="title">成长</view>
     </view>
   </view>
 
-  <!-- 成长数据概览 -->
-  <view class="stats-overview">
-    <view class="stat-item">
-      <text class="stat-number">{{totalDistance}}km</text>
-      <text class="stat-label">总里程</text>
+  <view class="container_placehold" style="height:{{navBarHeight + statusBarHeight}}px; background-color:{{navBarBgColor}}; transition: background-color 0.3s ease;"></view>
+  
+  <!-- 列表内容区域 -->
+  <scroll-view scroll-y="true" class="list-container" style="height: calc(100vh - {{listPaddingTop + 12 }}px);">
+    <!-- 成长数据概览 -->
+    <view class="stats-overview">
+      <view class="stat-item">
+        <image class="stat-avatar" src="/images/icon_commonUser.png" mode="aspectFill"></image>
+      </view>
+      <view class="stat-item">
+        <text class="stat-name">小宇</text>
+        <text class="stat-label">训练课时：42节</text>
+        <text class="stat-label">训练周期：2024.8-2025.12</text>
+        <text class="stat-label">出勤率：95%</text>
+        <text class="stat-label">课程时长：238小时</text>
+      </view>
     </view>
-    <view class="stat-item">
-      <text class="stat-number">{{totalTime}}h</text>
-      <text class="stat-label">总时长</text>
-    </view>
-    <view class="stat-item">
-      <text class="stat-number">{{totalCalories}}kcal</text>
-      <text class="stat-label">消耗卡路里</text>
-    </view>
-    <view class="stat-item">
-      <text class="stat-number">{{totalWorkouts}}</text>
-      <text class="stat-label">运动次数</text>
-    </view>
-  </view>
 
-  <!-- 成就卡片 -->
-  <view class="section">
-    <text class="section-title">我的成就</text>
+    <!-- 综合评价 -->
     <view class="achievements">
-      <view class="achievement-card" wx:for="{{achievements}}" wx:key="id">
-        <image class="achievement-icon" src="{{item.icon}}"></image>
-        <text class="achievement-title">{{item.title}}</text>
-        <text class="achievement-desc">{{item.description}}</text>
+      <!-- 背景图片 -->
+      <image class="achievements-bg" src="/images/bg_growth_header.png" mode="aspectFill"></image>
+      
+      <view class="achievements-title">
+        <text>综合评价</text>
+        <text>
+          <text class="title-score">93</text>
+          <text class="title-unit">分</text>
+        </text>
       </view>
-    </view>
-  </view>
-
-  <!-- 运动历程 -->
-  <view class="section">
-    <text class="section-title">运动历程</text>
-    <view class="progress-chart">
-      <!-- 这里可以是一个简单的进度图表或时间线 -->
-      <view class="progress-bar">
-        <view class="progress-fill" style="width: {{progress}}%;"></view>
+      <view class="achievements-text">
+        <text class="evaluate">“稳步进阶型”</text>
+        <text class="tips">动作模式建立良好，具备进入进阶训练课程。</text>
       </view>
-      <text class="progress-text">{{currentLevel}}级 / {{totalLevels}}级</text>
-    </view>
-    <view class="milestones">
-      <view class="milestone-item" wx:for="{{milestones}}" wx:key="id">
-        <view class="milestone-time">{{item.time}}</view>
-        <view class="milestone-content">
-          <text class="milestone-title">{{item.title}}</text>
-          <text class="milestone-desc">{{item.description}}</text>
+      <view class="achievements-line"></view>
+      <view class="achievements-charts">
+        <!-- 雷达图 -->
+        <view class="chart-container">
+          <canvas canvas-id="radarChart" style="width: 250px; height: 250px;"></canvas>
+        </view>
+        
+        <!-- 折线图 -->
+        <view class="chart-container">
+          <canvas canvas-id="lineChart" style="width: 320px; height: 200px;"></canvas>
         </view>
       </view>
     </view>
-  </view>
+
+    <!-- 运动历程 -->
+    <view class="section">
+      <view class="milestones">
+        <view>
+          <text class="milestones-text">评分变化：</text>
+          <text class="milestones-source">5.8 → 9.0（+3.2分）</text>
+        </view>
+        <view>
+          <text class="milestones-text">整体评价：</text>
+          <text>从“低头看球”进步到“抬头控球、左右手灵活切换”，运球稳定又自信!</text>
+        </view>
+        <view>
+          <text class="milestones-text">当前短板：</text>
+          <text>高强度对抗下偶尔回到低头习惯，急停后衔接动作略紧。</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
 </view>

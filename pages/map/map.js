@@ -4,14 +4,14 @@ Page({
     markers: [
       {
         id: 1,
-        latitude: 23.099994,
-        longitude: 113.324520,
-        name: '奥林匹克体育中心',
-        iconPath: '/images/icon_completion.png',
-        width: 30,
-        height: 30,
+        latitude: 30.249672,
+        longitude: 120.149017,
+        name: '杭州西湖',
+        iconPath: '/images/icon_map.png',
+        width: 50,
+        height: 50,
         callout: {
-          content: '奥林匹克体育中心',
+          content: '杭州西湖',
           color: '#333333',
           fontSize: 12,
           borderRadius: 5,
@@ -22,14 +22,14 @@ Page({
       },
       {
         id: 2,
-        latitude: 23.10229,
-        longitude: 113.330590,
-        name: '城市运动公园',
-        iconPath: '/images/icon_time.png',
-        width: 30,
-        height: 30,
+        latitude: 30.227838,
+        longitude: 120.177598,
+        name: '杭州体育馆',
+        iconPath: '/images/icon_map.png',
+        width: 50,
+        height: 50,
         callout: {
-          content: '城市运动公园',
+          content: '杭州体育馆',
           color: '#333333',
           fontSize: 12,
           borderRadius: 5,
@@ -55,8 +55,8 @@ Page({
       }
     ],
     currentLocation: {
-      latitude: 23.099994,
-      longitude: 113.324520
+      latitude: 30.227838,
+      longitude: 120.177598
     }
   },
   
