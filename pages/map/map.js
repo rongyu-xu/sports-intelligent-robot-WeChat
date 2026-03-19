@@ -1,4 +1,6 @@
 // map.js
+const api = require('../../api/api.js')
+
 Page({
   data: {
     markers: [
@@ -40,24 +42,17 @@ Page({
       }
     ],
     covers: [],
-    courses: [
-      {
-        id: 1,
-      },
-      {
-        id: 2,
-      },
-      {
-        id: 3,
-      },
-      {
-        id: 4,
-      }
-    ],
+    courses: [],
     currentLocation: {
       latitude: 30.227838,
       longitude: 120.177598
-    }
+    },
+    // 分页相关
+    page: 1,
+    size: 10,
+    hasMore: true,
+    loading: false,
+    searchValue: ''
   },
   
   onLoad: function() {
@@ -65,6 +60,43 @@ Page({
     this.initMap();
     // 获取当前位置
     this.getCurrentLocation();
+    // 加载场馆数据
+    this.loadVenues();
+  },
+  
+  // 加载场馆数据
+  loadVenues: function(isLoadMore = false) {
+    const { page, size, hasMore, loading, searchValue } = this.data;
+    
+    if (!hasMore || loading) return;
+    
+    this.setData({ loading: true });
+    
+    api.get('/api/v1/venues', {
+      page: isLoadMore ? page + 1 : 1,
+      size: size,
+      name: searchValue
+    }).then(res => {
+      console.log("res-----", res);
+      const venues = res.data.records || [];
+      const total = res.data.total || 0;
+      const current = res.data.current || (isLoadMore ? page + 1 : 1);
+      const pages = res.data.pages || 0;
+      
+      const newPage = current;
+      const newCourses = isLoadMore ? [...this.data.courses, ...venues] : venues;
+      const newHasMore = newPage < pages;
+      
+      this.setData({
+        courses: newCourses,
+        page: newPage,
+        hasMore: newHasMore,
+        loading: false
+      });
+    }).catch(err => {
+      console.error('加载场馆失败', err);
+      this.setData({ loading: false });
+    });
   },
   
   // 初始化地图
@@ -166,10 +198,33 @@ Page({
   onSearch: function(e) {
     const keyword = e.detail.value;
     console.log('搜索关键词', keyword);
-    // 搜索逻辑
-    wx.showToast({
-      title: '搜索中...',
-      icon: 'loading'
+    
+    this.setData({
+      searchValue: keyword,
+      page: 1,
+      hasMore: true,
+      courses: []
     });
+    
+    // 重新加载数据
+    this.loadVenues();
+  },
+  
+  // 搜索框失焦事件
+  onSearchBlur: function(e) {
+    const keyword = e.detail.value;
+    if (keyword && keyword !== this.data.searchValue) {
+      this.onSearch(e);
+    }
+  },
+  
+  // 搜索框完成按钮事件
+  onSearchConfirm: function(e) {
+    this.onSearch(e);
+  },
+  
+  // 触底加载更多
+  onReachBottom: function() {
+    this.loadVenues(true);
   }
 });

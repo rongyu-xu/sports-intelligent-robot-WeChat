@@ -1,4 +1,6 @@
 // pages/course/course.js
+const api = require('../../api/api.js')
+
 Page({
 
   /**
@@ -16,7 +18,13 @@ Page({
     // 列表区域顶部内边距
     listPaddingTop: 0,
     // 列表容器高度
-    listContainerHeight: 0
+    listContainerHeight: 0,
+    // 分页相关
+    page: 1,
+    size: 10,
+    hasMore: true,
+    loading: false,
+    searchValue: ''
   },
 
   /**
@@ -25,8 +33,43 @@ Page({
   onLoad(options) {
     // 获取系统信息，用于适配不同机型的状态栏和导航栏
     this.getSystemInfo();
-    // 模拟获取列表数据
-    this.getCoursesData();
+    // 加载课程数据
+    this.loadCourses();
+  },
+  
+  // 加载课程数据
+  loadCourses: function(isLoadMore = false) {
+    const { page, size, hasMore, loading, searchValue } = this.data;
+    
+    if (!hasMore || loading) return;
+    
+    this.setData({ loading: true });
+    
+    api.get('/api/v1/course-plan-instances', {
+      page: isLoadMore ? page + 1 : 1,
+      size: size,
+      courseName: searchValue
+    }).then(res => {
+      const courses = res.data.records || [];
+      const total = res.data.total || 0;
+      const current = res.data.current || (isLoadMore ? page + 1 : 1);
+      const size = res.data.size || this.data.size;
+      
+      const newPage = current;
+      const newCourses = isLoadMore ? [...this.data.courses, ...courses] : courses;
+      // 使用 total 判断是否还有更多数据
+      const newHasMore = (newPage * size) < total;
+      
+      this.setData({
+        courses: newCourses,
+        page: newPage,
+        hasMore: newHasMore,
+        loading: false
+      });
+    }).catch(err => {
+      console.error('加载课程失败', err);
+      this.setData({ loading: false });
+    });
   },
 
   // 获取系统信息
@@ -62,46 +105,6 @@ Page({
         });
       }
     });
-  },
-
-  // 模拟获取课程列表数据
-  getCoursesData: function() {
-    let that = this;
-    // 模拟异步请求数据
-    setTimeout(function() {
-      // 设置模拟数据
-      that.setData({
-        courses: [
-          {
-            id: 1,
-            time: '2025/09/28 16:00-17:00',
-            status: '已完成',
-            title: '基础跑步训练',
-            description: '学习正确的跑步姿势和呼吸方法，提高跑步效率',
-            duration: 60,
-            difficulty: '100'
-          },
-          {
-            id: 2,
-            time: '2025/09/29 15:00-16:30',
-            status: '进行中',
-            title: '力量训练课程',
-            description: '通过器械训练增强核心力量，提高身体稳定性',
-            duration: 90,
-            difficulty: '90'
-          },
-          {
-            id: 3,
-            time: '2025/09/30 10:00-11:00',
-            status: '未开始',
-            title: '瑜伽放松练习',
-            description: '通过瑜伽动作放松身心，缓解运动后的肌肉紧张',
-            duration: 60,
-            difficulty: '80'
-          }
-        ]
-      });
-    }, 1000);
   },
 
   // 课程项点击事件
@@ -147,7 +150,12 @@ Page({
    */
   onPullDownRefresh() {
     // 重新获取课程列表数据
-    this.getCoursesData();
+    this.setData({
+      page: 1,
+      hasMore: true,
+      courses: []
+    });
+    this.loadCourses();
     // 停止下拉刷新动画
     wx.stopPullDownRefresh();
   },
@@ -156,7 +164,41 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-
+    this.loadCourses(true);
+  },
+  
+  // scroll-view 触底事件
+  onScrollToLower() {
+    this.loadCourses(true);
+  },
+  
+  // 搜索功能
+  onSearch: function(e) {
+    const keyword = e.detail.value;
+    console.log('搜索关键词', keyword);
+    
+    this.setData({
+      searchValue: keyword,
+      page: 1,
+      hasMore: true,
+      courses: []
+    });
+    
+    // 重新加载数据
+    this.loadCourses();
+  },
+  
+  // 搜索框失焦事件
+  onSearchBlur: function(e) {
+    const keyword = e.detail.value;
+    if (keyword && keyword !== this.data.searchValue) {
+      this.onSearch(e);
+    }
+  },
+  
+  // 搜索框完成按钮事件
+  onSearchConfirm: function(e) {
+    this.onSearch(e);
   },
 
   /**

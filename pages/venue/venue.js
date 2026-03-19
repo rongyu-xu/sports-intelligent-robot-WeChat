@@ -1,4 +1,6 @@
 //index.js
+const api = require('../../api/api.js')
+
 Page({
   data: {
     list: [],
@@ -11,6 +13,20 @@ Page({
     },
     isScrolled: false,   // 控制标题栏背景色的滚动状态
     navBarBgColor: 'transparent', // 默认标题栏背景色为透明
+    // 场馆详情数据
+    venue: {
+      id: '',
+      name: '',
+      address: '',
+      area: '',
+      venueTypeName: '',
+      organizationName: '',
+      smartDevices: '',
+      todayCourses: 0,
+      environmentImageUrls: '',
+      remark: ''
+    },
+    loading: false,
     // 教练力量数据
     coaches: [
       {
@@ -82,11 +98,48 @@ Page({
       }
     ]
   },
-  onLoad: function() {
+  onLoad: function(options) {
     // 获取系统信息，包括状态栏高度等，用于适配不同机型
     this.getSystemInfo();
     // 模拟获取列表数据
     this.getListData();
+    
+    // 获取场馆ID并加载详情
+    const venueId = options.id;
+    if (venueId) {
+      this.loadVenueDetail(venueId);
+    }
+  },
+  
+  // 加载场馆详情
+  loadVenueDetail: function(id) {
+    this.setData({ loading: true });
+    
+    api.get('/api/v1/venues/' + id).then(res => {
+      const venueData = res.data || {};
+      this.setData({
+        venue: {
+          id: venueData.id || '',
+          name: venueData.name || '',
+          address: venueData.address || '',
+          area: venueData.area || '',
+          venueTypeName: venueData.venueTypeName || '',
+          organizationName: venueData.organizationName || '',
+          smartDevices: venueData.smartDevices || '',
+          todayCourses: venueData.todayCourses || 0,
+          environmentImageUrls: venueData.environmentImageUrls || '',
+          remark: venueData.remark || ''
+        },
+        loading: false
+      });
+    }).catch(err => {
+      console.error('加载场馆详情失败', err);
+      this.setData({ loading: false });
+      wx.showToast({
+        title: '加载失败',
+        icon: 'none'
+      });
+    });
   },
   
   // 获取系统信息（使用最新的API）

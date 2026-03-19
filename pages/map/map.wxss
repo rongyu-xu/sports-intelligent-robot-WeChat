@@ -17,6 +17,7 @@
 .data-container {
   flex: 1;
   max-height: 50vh;
+  min-height: 48vh;
   background-color: #fff;
   border-radius: 20rpx 20rpx 0 0;
   /* margin-top: -20rpx; */
@@ -210,4 +211,17 @@
   width: 32rpx;
   height: 32rpx;
   margin-top: 2rpx;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
 }

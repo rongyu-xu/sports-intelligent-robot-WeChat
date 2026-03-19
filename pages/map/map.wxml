@@ -22,27 +22,30 @@
     <!-- 搜索框 -->
     <view class="search-box">
       <image src="/images/icon_search.png" class="search-icon" />
-      <input type="text" placeholder="搜索地点或场馆" class="search-input" />
+      <input type="text" placeholder="搜索地点或场馆" class="search-input" bindblur="onSearchBlur" bindconfirm="onSearchConfirm" />
     </view>
     
     <!-- 推荐内容 -->
     <view class="recommend-section">
-      <view class="recommend-list">
+      <!-- 空状态 -->
+      <view wx:if="{{courses.length === 0 && !loading}}" class="empty-state">
+        <text class="empty-text">暂无数据</text>
+      </view>
+      <!-- 数据列表 -->
+      <view wx:else class="recommend-list">
         <view wx:for="{{courses}}" wx:key="id" class="recommend-item">
           <view class="item-info">
             <view class="item-name">
-              <text>李宁体育馆</text>
+              <text>{{item.name}}</text>
               <view class="navigation">
                 <image src="/images/icon_navigation.png" class="navigation-img" />
                 <text>0.5km</text>
               </view>
             </view>
-            <view class="item-desc">凤起路12号2号楼</view>
+            <view class="item-desc">{{item.address}}</view>
             <view class="item-meta">
               <view class="distance">
-                <view class="ball ball-blue">篮球</view>
-                <view class="ball ball-green">足球</view>
-                <view class="ball ball-origin">羽毛球</view>
+                <view class="ball ball-blue">{{item.venueTypeName}}</view>
               </view>
               <view class="rating" bindtap="onTapDetail" data-id="{{item.id}}">
                 <text>详情</text>

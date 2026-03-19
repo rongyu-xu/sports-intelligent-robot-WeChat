@@ -26,31 +26,29 @@
       <view class="introduction">
         <view class="venue-info">
           <view class="item-name">
-            <text>李宁体育馆</text>
+            <text>{{venue.name || '加载中...'}}</text>
             <view class="navigation">
               <image src="/images/icon_navigation.png" class="navigation-img" />
               <text>导航</text>
             </view>
           </view>
-          <view class="item-desc">凤起路12号2号楼</view>
+          <view class="item-desc">{{venue.address}}</view>
           <view class="item-meta">
             <view class="distance">
               <view class="ball-text">训练类型：</view>
-              <view class="ball ball-blue">篮球</view>
-              <view class="ball ball-green">足球</view>
-              <view class="ball ball-origin">羽毛球</view>
+              <view class="ball ball-blue">{{venue.venueTypeName}}</view>
             </view>
           </view>
         </view>
         <view class="venue-brief">
           <view>
             <text class="brief-text">培训机构：</text>
-            <text class="brief-title">互动体育</text>
+            <text class="brief-title">{{venue.organizationName}}</text>
           </view>
           <view class="brief-logo">
             <image src="/images/icon_date.png" class="logo" />
             <view>
-              乐活体育篮球训练营成立于2009年，是中国成长最快、规模最大、最专业的青少年篮球培训和教育机构。致力于青少年篮球教育、篮球赛事、青少年篮球人才...
+              {{venue.remark || '暂无场馆介绍'}}
             </view>
           </view>
         </view>
